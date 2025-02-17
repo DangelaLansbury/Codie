@@ -22,17 +22,17 @@ const BaseSelectorInput = styled.div`
   }
 `;
 
-interface BaseGroupProps {
+interface BaseSelectorProps {
   onChange: (value: string) => void;
   value: string | null;
 }
 
 /**
  * Display a nucleotide base selector
- * @param {BaseGroupProps} props
+ * @param {BaseSelectorProps} props
  * @returns {React.ReactElement}
  */
-export const BaseGroup: React.FC<BaseGroupProps> = ({ onChange, value }) => {
+export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value }) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleClick = (value: string) => {
@@ -56,7 +56,7 @@ export const BaseGroup: React.FC<BaseGroupProps> = ({ onChange, value }) => {
  * Display full codon selector with amino acid translation
  * @returns {React.ReactElement}
  */
-export const BaseSelector: React.FC = () => {
+export const CodonSelector: React.FC = () => {
   const [b1, setB1] = useState<string | null>(null);
   const [b2, setB2] = useState<string | null>(null);
   const [b3, setB3] = useState<string | null>(null);
@@ -72,9 +72,9 @@ export const BaseSelector: React.FC = () => {
   return (
     <div>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
-        <BaseGroup onChange={setB1} value={b1} />
-        <BaseGroup onChange={setB2} value={b2} />
-        <BaseGroup onChange={setB3} value={b3} />
+        <BaseSelector onChange={setB1} value={b1} />
+        <BaseSelector onChange={setB2} value={b2} />
+        <BaseSelector onChange={setB3} value={b3} />
       </div>
       <div>
         <p>{buildCodon()}</p>
