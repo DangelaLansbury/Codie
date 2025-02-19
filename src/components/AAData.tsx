@@ -18,7 +18,7 @@ export const b_: Record<BaseLetter, Base> = {
   C: { letter: BaseLetter.C, name: 'Cytosine' },
   G: { letter: BaseLetter.G, name: 'Guanine' },
   U: { letter: BaseLetter.U, name: 'Uracil' },
-};
+} as const;
 
 // enum FoldingEffect {
 //   HYDROPHOBIC = 'Hydrophobic Core',
@@ -251,9 +251,9 @@ export interface AminoAcidData {
   name: string;
   abbr: string;
   letter: string;
-  b1: Base;
-  b2: Base;
-  b3: Base[];
+  b1: (typeof b_)[keyof typeof b_];
+  b2: (typeof b_)[keyof typeof b_];
+  b3: (typeof b_)[keyof typeof b_][];
   details: AminoAcidDetails;
 }
 
@@ -288,10 +288,7 @@ export const AA: AminoAcidData[] = [
   { name: 'Methionine', abbr: 'Met', letter: 'M', b1: b_.A, b2: b_.U, b3: [b_.G], details: AA_INFO['M'] },
 ];
 
-export function aaFromCodon(b1: string | null, b2: string | null, b3: string | null): AminoAcidData | null {
-  if (b1 == null || b2 == null || b3 == null) {
-    return null;
-  }
-  const aminoAcid = AA.find((aa) => aa.b1.letter === (b1 as BaseLetter) && aa.b2.letter === (b2 as BaseLetter) && aa.b3.map((b) => b.letter).includes(b3 as BaseLetter));
-  return aminoAcid || null;
+export function aaFromCodon(b1: BaseLetter | null, b2: BaseLetter | null, b3: BaseLetter | null): AminoAcidData | null {
+  if (!b1 || !b2 || !b3) return null;
+  return AA.find((aa) => aa.b1.letter === b1 && aa.b2.letter === b2 && aa.b3.some((b) => b.letter === b3)) || null;
 }

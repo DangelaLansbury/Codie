@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base, BaseLetter } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
 
 const BaseSelectorInput = styled.div`
   align-items: center;
@@ -51,14 +51,23 @@ export const CodonSelector: React.FC = () => {
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
+  const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
+  const [codon, setCodon] = useState<string>('No amino acid');
 
-  function buildCodon(): string {
+  useEffect(() => {
     const aminoAcid = aaFromCodon(b1, b2, b3);
     if (aminoAcid == null) {
-      return 'No amino acid';
+      setCodon('No amino acid');
+    } else {
+      if (peptideChain.length < 4) {
+        setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
+      } else {
+        // remove the first element and add the new one
+        setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
+      }
+      setCodon(`${aminoAcid.name} (${aminoAcid.abbr})`);
     }
-    return `${aminoAcid.name} (${aminoAcid.abbr})`;
-  }
+  }, [b1, b2, b3]);
 
   return (
     <div>
@@ -68,7 +77,17 @@ export const CodonSelector: React.FC = () => {
         <BaseSelector onChange={setB3} value={b3} />
       </div>
       <div>
-        <p>{buildCodon()}</p>
+        <p>{codon}</p>
+      </div>
+      <div>
+        <p>Peptide Chain:</p>
+        <ul>
+          {peptideChain.map((aa, index) => (
+            <li key={`${aa.abbr}-${index}`}>
+              {aa.abbr} - {aa.details.sideChain}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
