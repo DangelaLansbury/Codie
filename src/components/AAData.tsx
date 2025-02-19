@@ -1,17 +1,36 @@
 /**
  * Nucleotide base
  */
+export enum BaseLetter {
+  A = 'A',
+  C = 'C',
+  G = 'G',
+  U = 'U',
+}
+
 export interface Base {
-  letter: string;
+  letter: BaseLetter;
   name: string;
 }
 
-export const b_: Record<string, Base> = {
-  A: { letter: 'A', name: 'Adenine' },
-  C: { letter: 'C', name: 'Cytosine' },
-  G: { letter: 'G', name: 'Guanine' },
-  U: { letter: 'U', name: 'Uracil' },
+export const b_: Record<BaseLetter, Base> = {
+  A: { letter: BaseLetter.A, name: 'Adenine' },
+  C: { letter: BaseLetter.C, name: 'Cytosine' },
+  G: { letter: BaseLetter.G, name: 'Guanine' },
+  U: { letter: BaseLetter.U, name: 'Uracil' },
 };
+
+// enum FoldingEffect {
+//   HYDROPHOBIC = 'Hydrophobic Core',
+//   HYDROPHILIC = 'Hydrophilic Surface',
+//   NEG = 'Negative Charge',
+//   POS = 'Positive Charge',
+//   KINK = 'Kink Formation',
+//   FLEX = 'Flexible Region',
+//   DISULFIDE = 'Disulfide Bond',
+//   STOP = 'Stop Codon',
+//   AROMATIC = 'Aromatic Stacking',
+// }
 
 /**
  * Amino acid trait
@@ -269,17 +288,10 @@ export const AA: AminoAcidData[] = [
   { name: 'Methionine', abbr: 'Met', letter: 'M', b1: b_.A, b2: b_.U, b3: [b_.G], details: AA_INFO['M'] },
 ];
 
-/**
- * Make amino acid from codon
- * @param {string | null} b1
- * @param {string | null} b2
- * @param {string | null} b3
- * @returns {AminoAcidData | null}
- */
 export function aaFromCodon(b1: string | null, b2: string | null, b3: string | null): AminoAcidData | null {
   if (b1 == null || b2 == null || b3 == null) {
     return null;
   }
-  const aminoAcid = AA.find((aa) => aa.b1.letter === b1 && aa.b2.letter === b2 && aa.b3.map((b) => b.letter).includes(b3));
+  const aminoAcid = AA.find((aa) => aa.b1.letter === (b1 as BaseLetter) && aa.b2.letter === (b2 as BaseLetter) && aa.b3.map((b) => b.letter).includes(b3 as BaseLetter));
   return aminoAcid || null;
 }

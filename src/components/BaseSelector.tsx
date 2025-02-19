@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter } from './AAData';
 
 const BaseSelectorInput = styled.div`
   align-items: center;
@@ -23,19 +23,14 @@ const BaseSelectorInput = styled.div`
 `;
 
 interface BaseSelectorProps {
-  onChange: (value: string) => void;
-  value: string | null;
+  onChange: (value: BaseLetter) => void;
+  value: BaseLetter | null;
 }
 
-/**
- * Display a nucleotide base selector
- * @param {BaseSelectorProps} props
- * @returns {React.ReactElement}
- */
 export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value }) => {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<BaseLetter | null>(null);
 
-  const handleClick = (value: string) => {
+  const handleClick = (value: BaseLetter) => {
     setSelected(value);
     onChange(value);
   };
@@ -52,14 +47,10 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value }) =
   );
 };
 
-/**
- * Display full codon selector with amino acid translation
- * @returns {React.ReactElement}
- */
 export const CodonSelector: React.FC = () => {
-  const [b1, setB1] = useState<string | null>(null);
-  const [b2, setB2] = useState<string | null>(null);
-  const [b3, setB3] = useState<string | null>(null);
+  const [b1, setB1] = useState<BaseLetter | null>(null);
+  const [b2, setB2] = useState<BaseLetter | null>(null);
+  const [b3, setB3] = useState<BaseLetter | null>(null);
 
   function buildCodon(): string {
     const aminoAcid = aaFromCodon(b1, b2, b3);
