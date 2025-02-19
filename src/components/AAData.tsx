@@ -149,7 +149,7 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   N: {
     name: 'Asparagine',
-    sideChain: 'Polar Uncharged',
+    sideChain: 'Amide',
     traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.amide],
   },
   D: {
@@ -159,12 +159,12 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   C: {
     name: 'Cysteine',
-    sideChain: 'Sulfur-Containing',
+    sideChain: 'Sulfahydryl',
     traits: [AA_TRAITS.polar, AA_TRAITS.disulfideBond],
   },
   Q: {
     name: 'Glutamine',
-    sideChain: 'Polar Uncharged',
+    sideChain: 'Amide',
     traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.amide],
   },
   E: {
@@ -174,12 +174,12 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   G: {
     name: 'Glycine',
-    sideChain: 'Special Case',
+    sideChain: 'Simple',
     traits: [AA_TRAITS.smallest, AA_TRAITS.nonpolar, AA_TRAITS.flexible],
   },
   H: {
     name: 'Histidine',
-    sideChain: 'Basic',
+    sideChain: 'Imidazole',
     traits: [AA_TRAITS.positivelyCharged, AA_TRAITS.basic, AA_TRAITS.aromatic],
   },
   I: {
@@ -199,7 +199,7 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   M: {
     name: 'Methionine',
-    sideChain: 'Sulfur-Containing',
+    sideChain: 'Sulfahydryl',
     traits: [AA_TRAITS.nonpolar, AA_TRAITS.sulfurContaining],
   },
   F: {
@@ -209,17 +209,17 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   P: {
     name: 'Proline',
-    sideChain: 'Special Case',
+    sideChain: 'Cyclic imido group',
     traits: [AA_TRAITS.nonpolar, AA_TRAITS.rigid, AA_TRAITS.cyclic],
   },
   S: {
     name: 'Serine',
-    sideChain: 'Polar Uncharged',
+    sideChain: 'Hydroxyl',
     traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.hydroxylGroup],
   },
   T: {
     name: 'Threonine',
-    sideChain: 'Polar Uncharged',
+    sideChain: 'Hydroxyl',
     traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.hydroxylGroup],
   },
   W: {
@@ -239,7 +239,7 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   },
   '*': {
     name: 'Stop',
-    sideChain: null,
+    sideChain: 'Stop Codon',
     traits: [AA_TRAITS['*']],
   },
 };
