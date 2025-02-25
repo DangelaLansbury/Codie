@@ -21,115 +21,71 @@ export const b_: Record<BaseLetter, Base> = {
   U: { letter: BaseLetter.U, name: 'Uracil', color: '#C89053' },
 } as const;
 
-// enum FoldingEffect {
-//   HYDROPHOBIC = 'Hydrophobic Core',
-//   HYDROPHILIC = 'Hydrophilic Surface',
-//   NEG = 'Negative Charge',
-//   POS = 'Positive Charge',
-//   KINK = 'Kink Formation',
-//   FLEX = 'Flexible Region',
-//   DISULFIDE = 'Disulfide Bond',
-//   STOP = 'Stop Codon',
-//   AROMATIC = 'Aromatic Stacking',
-// }
-
 /**
  * Amino acid trait
  */
 export interface AminoAcidTrait {
-  color: string;
-  foldingEffect: string;
+  name: string;
+  description: string;
+  foldEffect: string;
 }
 
 export const AA_TRAITS: Record<string, AminoAcidTrait> = {
-  small: {
-    color: '#placeholderColorSmall',
-    foldingEffect: 'Enables tight packing in protein cores',
-  },
-  smallest: {
-    color: '#placeholderColorSmallest',
-    foldingEffect: 'Allows maximum flexibility',
-  },
-  nonpolar: {
-    color: '#placeholderColorNonpolar',
-    foldingEffect: 'Drives hydrophobic interactions inside proteins',
-  },
   hydrophobic: {
-    color: '#placeholderColorHydrophobic',
-    foldingEffect: 'Promotes folding by avoiding water',
+    name: 'Hydrophobic',
+    description: 'Drives formation of a stabilizing hydrophobic core',
+    foldEffect: 'Fold inwards',
   },
-  positivelyCharged: {
-    color: '#placeholderColorPositive',
-    foldingEffect: 'Forms ionic bonds with negative residues',
+  hydrophilic: {
+    name: 'Hydrophilic',
+    description: 'Promotes hydrogen bonding for flexibility and solubility',
+    foldEffect: 'Stay on surface',
   },
-  negativelyCharged: {
-    color: '#placeholderColorNegative',
-    foldingEffect: 'Forms ionic bonds with positive residues',
+  negCharge: {
+    name: 'Negative Charge',
+    description: 'Forms salt bridges with positive residues',
+    foldEffect: 'Stabilize and anchor',
   },
-  basic: {
-    color: '#placeholderColorBasic',
-    foldingEffect: 'Engages in hydrogen bonding and ionic interactions',
+  posCharge: {
+    name: 'Positive Charge',
+    description: 'Forms salt bridges with negative residues',
+    foldEffect: 'Stabilize and anchor',
   },
-  acidic: {
-    color: '#placeholderColorAcidic',
-    foldingEffect: 'Participates in ionic bonds with basic residues',
-  },
-  polar: {
-    color: '#placeholderColorPolar',
-    foldingEffect: 'Forms hydrogen bonds, stabilizing structures',
-  },
-  uncharged: {
-    color: '#placeholderColorUncharged',
-    foldingEffect: 'Neutral but can form hydrogen bonds',
-  },
-  amide: {
-    color: '#placeholderColorAmide',
-    foldingEffect: 'Facilitates hydrogen bonding via amide group',
+  kink: {
+    name: 'Kink-Forming',
+    description: 'Creates a sharp bend or disrupts helices',
+    foldEffect: 'Make rigid bends',
   },
   flexible: {
-    color: '#placeholderColorFlexible',
-    foldingEffect: 'Increases backbone flexibility',
+    name: 'Flexible',
+    description: 'Increases backbone flexibility',
+    foldEffect: 'Allow dynamic movement',
   },
-  sulfurContaining: {
-    color: '#placeholderColorSulfur',
-    foldingEffect: 'Can form disulfide bonds (cysteine)',
+  disulfide: {
+    name: 'Disulfide Bonding',
+    description: 'Stabilizes structure via strong covalent bonds',
+    foldEffect: 'Lock in place',
   },
   aromatic: {
-    color: '#placeholderColorAromatic',
-    foldingEffect: 'Allows stacking interactions, stabilizing folds',
+    name: 'Aromatic',
+    description: 'Stacks with other aromatic residues for stability',
+    foldEffect: 'Stack, pack, interact',
   },
-  branched: {
-    color: '#placeholderColorBranched',
-    foldingEffect: 'Contributes to hydrophobic cores',
-  },
-  rigid: {
-    color: '#placeholderColorRigid',
-    foldingEffect: 'Restricts backbone flexibility',
-  },
-  hydroxylGroup: {
-    color: '#placeholderColorHydroxyl',
-    foldingEffect: 'Forms hydrogen bonds; phosphorylation site',
-  },
-  disulfideBond: {
-    color: '#placeholderColorDisulfide',
-    foldingEffect: 'Stabilizes structure via covalent bonds',
-  },
-  bulky: {
-    color: '#placeholderColorBulky',
-    foldingEffect: 'Limits close packing; affects folding',
-  },
-  cyclic: {
-    color: '#placeholderColorCyclic',
-    foldingEffect: 'Introduces kinks; restricts flexibility',
-  },
-  '*': {
-    color: '#placeholderColorStop',
-    foldingEffect: 'Terminates translation',
+  stop: {
+    name: 'Stop Codon',
+    description: 'Terminates translation and releases polypeptide',
+    foldEffect: 'End translation',
   },
 };
 
+export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
+  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(', ');
+  console.log(aminoAcidDetails.name, traits);
+  return traits;
+}
+
 /**
- * Full info for each amino acid
+ * Complete amino acid data
  */
 export interface AminoAcidDetails {
   name: string;
@@ -141,112 +97,112 @@ export const AA_INFO: Record<string, AminoAcidDetails> = {
   A: {
     name: 'Alanine',
     sideChain: 'Aliphatic',
-    traits: [AA_TRAITS.small, AA_TRAITS.nonpolar, AA_TRAITS.hydrophobic],
+    traits: [AA_TRAITS.hydrophobic],
   },
   R: {
     name: 'Arginine',
     sideChain: 'Basic',
-    traits: [AA_TRAITS.positivelyCharged, AA_TRAITS.basic],
+    traits: [AA_TRAITS.posCharge],
   },
   N: {
     name: 'Asparagine',
     sideChain: 'Amide',
-    traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.amide],
+    traits: [AA_TRAITS.hydrophilic],
   },
   D: {
     name: 'Aspartate',
     sideChain: 'Acidic',
-    traits: [AA_TRAITS.negativelyCharged, AA_TRAITS.acidic],
+    traits: [AA_TRAITS.negCharge],
   },
   C: {
     name: 'Cysteine',
     sideChain: 'Sulfahydryl',
-    traits: [AA_TRAITS.polar, AA_TRAITS.disulfideBond],
+    traits: [AA_TRAITS.disulfide],
   },
   Q: {
     name: 'Glutamine',
     sideChain: 'Amide',
-    traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.amide],
+    traits: [AA_TRAITS.hydrophilic],
   },
   E: {
     name: 'Glutamate',
     sideChain: 'Acidic',
-    traits: [AA_TRAITS.negativelyCharged, AA_TRAITS.acidic],
+    traits: [AA_TRAITS.negCharge],
   },
   G: {
     name: 'Glycine',
     sideChain: 'Simple',
-    traits: [AA_TRAITS.smallest, AA_TRAITS.nonpolar, AA_TRAITS.flexible],
+    traits: [AA_TRAITS.flexible],
   },
   H: {
     name: 'Histidine',
     sideChain: 'Imidazole',
-    traits: [AA_TRAITS.positivelyCharged, AA_TRAITS.basic, AA_TRAITS.aromatic],
+    traits: [AA_TRAITS.posCharge],
   },
   I: {
     name: 'Isoleucine',
     sideChain: 'Aliphatic',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.hydrophobic, AA_TRAITS.branched],
+    traits: [AA_TRAITS.hydrophobic],
   },
   L: {
     name: 'Leucine',
     sideChain: 'Aliphatic',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.hydrophobic, AA_TRAITS.branched],
+    traits: [AA_TRAITS.hydrophobic],
   },
   K: {
     name: 'Lysine',
     sideChain: 'Basic',
-    traits: [AA_TRAITS.positivelyCharged, AA_TRAITS.basic],
+    traits: [AA_TRAITS.posCharge],
   },
   M: {
     name: 'Methionine',
     sideChain: 'Sulfahydryl',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.sulfurContaining],
+    traits: [AA_TRAITS.hydrophobic],
   },
   F: {
     name: 'Phenylalanine',
     sideChain: 'Aromatic',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.aromatic],
+    traits: [AA_TRAITS.hydrophobic, AA_TRAITS.aromatic],
   },
   P: {
     name: 'Proline',
     sideChain: 'Cyclic imido group',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.rigid, AA_TRAITS.cyclic],
+    traits: [AA_TRAITS.kink],
   },
   S: {
     name: 'Serine',
     sideChain: 'Hydroxyl',
-    traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.hydroxylGroup],
+    traits: [AA_TRAITS.hydrophilic],
   },
   T: {
     name: 'Threonine',
     sideChain: 'Hydroxyl',
-    traits: [AA_TRAITS.polar, AA_TRAITS.uncharged, AA_TRAITS.hydroxylGroup],
+    traits: [AA_TRAITS.hydrophilic],
   },
   W: {
     name: 'Tryptophan',
     sideChain: 'Aromatic',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.aromatic, AA_TRAITS.bulky],
+    traits: [AA_TRAITS.aromatic],
   },
   Y: {
     name: 'Tyrosine',
     sideChain: 'Aromatic',
-    traits: [AA_TRAITS.polar, AA_TRAITS.aromatic, AA_TRAITS.hydroxylGroup],
+    traits: [AA_TRAITS.hydrophilic, AA_TRAITS.aromatic],
   },
   V: {
     name: 'Valine',
     sideChain: 'Aliphatic',
-    traits: [AA_TRAITS.nonpolar, AA_TRAITS.hydrophobic, AA_TRAITS.branched],
+    traits: [AA_TRAITS.hydrophobic],
   },
   '*': {
     name: 'Stop',
     sideChain: 'Stop Codon',
-    traits: [AA_TRAITS['*']],
+    traits: [AA_TRAITS.stop],
   },
 };
 
 /**
- * Amino acid data
+ * Base combinations, amino acids, and details
  */
 export interface AminoAcidData {
   name: string;

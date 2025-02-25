@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getFoldEffect } from './AAData';
 
 const BaseSelectorInput = styled.div`
   align-items: center;
   background-color: #cfbab3;
   cursor: pointer;
   display: flex;
+  font-family: 'Fira Mono', monospace;
+  font-weight: 500;
   height: 2rem;
   justify-content: center;
   transition: background-color ease-in-out 0.2s;
@@ -69,6 +71,12 @@ export const CodonSelector: React.FC = () => {
     }
   }, [b1, b2, b3]);
 
+  // function getEffect(aa: AminoAcidDetails): string {
+  //   const aaTraits = aa.traits.map((trait) => trait.name).join(', ');
+  //   console.log(aaTraits);
+  //   return aaTraits;
+  // }
+
   return (
     <div>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
@@ -84,7 +92,7 @@ export const CodonSelector: React.FC = () => {
         <ul>
           {peptideChain.map((aa, index) => (
             <li key={`${aa.abbr}-${index}`}>
-              {aa.abbr} - {aa.details.sideChain}
+              {aa.abbr} - {getFoldEffect(aa.details)}
             </li>
           ))}
         </ul>
