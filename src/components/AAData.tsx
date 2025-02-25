@@ -11,13 +11,14 @@ export enum BaseLetter {
 export interface Base {
   letter: BaseLetter;
   name: string;
+  color: string;
 }
 
 export const b_: Record<BaseLetter, Base> = {
-  A: { letter: BaseLetter.A, name: 'Adenine' },
-  C: { letter: BaseLetter.C, name: 'Cytosine' },
-  G: { letter: BaseLetter.G, name: 'Guanine' },
-  U: { letter: BaseLetter.U, name: 'Uracil' },
+  A: { letter: BaseLetter.A, name: 'Adenine', color: '#783D5C' },
+  C: { letter: BaseLetter.C, name: 'Cytosine', color: '#7C75C4' },
+  G: { letter: BaseLetter.G, name: 'Guanine', color: '#39796B' },
+  U: { letter: BaseLetter.U, name: 'Uracil', color: '#C89053' },
 } as const;
 
 // enum FoldingEffect {
