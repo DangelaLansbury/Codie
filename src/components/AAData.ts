@@ -34,52 +34,52 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
   hydrophobic: {
     name: 'Hydrophobic',
     description: 'Drives formation of a stabilizing hydrophobic core',
-    foldEffect: 'Fold inwards',
+    foldEffect: 'fold inward',
   },
   hydrophilic: {
     name: 'Hydrophilic',
     description: 'Promotes hydrogen bonding for flexibility and solubility',
-    foldEffect: 'Stay on surface',
+    foldEffect: 'stay on surface',
   },
   negCharge: {
     name: 'Negative Charge',
     description: 'Forms salt bridges with positive residues',
-    foldEffect: 'Stabilize and anchor',
+    foldEffect: 'stabilize structure',
   },
   posCharge: {
     name: 'Positive Charge',
     description: 'Forms salt bridges with negative residues',
-    foldEffect: 'Stabilize and anchor',
+    foldEffect: 'stabilize structure',
   },
   kink: {
     name: 'Kink-Forming',
     description: 'Creates a sharp bend or disrupts helices',
-    foldEffect: 'Make rigid bends',
+    foldEffect: 'bend rigidly',
   },
   flexible: {
     name: 'Flexible',
     description: 'Increases backbone flexibility',
-    foldEffect: 'Allow dynamic movement',
+    foldEffect: 'allow movement',
   },
   disulfide: {
     name: 'Disulfide Bonding',
     description: 'Stabilizes structure via strong covalent bonds',
-    foldEffect: 'Lock in place',
+    foldEffect: 'lock in place',
   },
   aromatic: {
     name: 'Aromatic',
     description: 'Stacks with other aromatic residues for stability',
-    foldEffect: 'Stack, pack, interact',
+    foldEffect: 'stack',
   },
   stop: {
     name: 'Stop Codon',
     description: 'Terminates translation and releases polypeptide',
-    foldEffect: 'End translation',
+    foldEffect: 'end translation',
   },
 };
 
 export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
-  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(', ');
+  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(' + ');
   console.log(aminoAcidDetails.name, traits);
   return traits;
 }

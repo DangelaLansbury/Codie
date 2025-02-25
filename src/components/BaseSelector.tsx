@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getFoldEffect } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
 
 const BaseSelectorInput = styled.div`
   align-items: center;
@@ -49,33 +49,32 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value }) =
   );
 };
 
-export const CodonSelector: React.FC = () => {
+interface CodonSelectorProps {
+  codon: AminoAcidData | null;
+  setCodon: (codon: AminoAcidData | null) => void;
+}
+
+export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon }) => {
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
-  const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
-  const [codon, setCodon] = useState<string>('No amino acid');
+  // const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
+  // const [codon, setCodon] = useState<string>('No amino acid');
 
   useEffect(() => {
     const aminoAcid = aaFromCodon(b1, b2, b3);
     if (aminoAcid == null) {
-      setCodon('No amino acid');
+      return;
     } else {
-      if (peptideChain.length < 4) {
-        setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
-      } else {
-        // remove the first element and add the new one
-        setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
-      }
-      setCodon(`${aminoAcid.name} (${aminoAcid.abbr})`);
+      // if (peptideChain.length < 4) {
+      //   setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
+      // } else {
+      //   // remove the first element and add the new one
+      //   setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
+      // }
+      setCodon(aminoAcid);
     }
   }, [b1, b2, b3]);
-
-  // function getEffect(aa: AminoAcidDetails): string {
-  //   const aaTraits = aa.traits.map((trait) => trait.name).join(', ');
-  //   console.log(aaTraits);
-  //   return aaTraits;
-  // }
 
   return (
     <div>
@@ -85,9 +84,9 @@ export const CodonSelector: React.FC = () => {
         <BaseSelector onChange={setB3} value={b3} />
       </div>
       <div>
-        <p>{codon}</p>
+        <p>{codon?.name}</p>
       </div>
-      <div>
+      {/* <div>
         <p>Peptide Chain:</p>
         <ul>
           {peptideChain.map((aa, index) => (
@@ -96,7 +95,7 @@ export const CodonSelector: React.FC = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
