@@ -80,7 +80,6 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
 
 export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
   const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(' + ');
-  console.log(aminoAcidDetails.name, traits);
   return traits;
 }
 
