@@ -21,7 +21,7 @@ export const CompareAAs: React.FC = () => {
               <span>{getFoldEffect(wildtype.details)}</span>
             </>
           ) : (
-            <span>'Select wildtype'</span>
+            <span>wildtype</span>
           )}
         </div>
         <div style={{ display: 'inline-flex', flexDirection: 'row', width: '24px', justifyContent: 'center' }}>
@@ -33,7 +33,7 @@ export const CompareAAs: React.FC = () => {
               <span>{getFoldEffect(mutant.details)}</span>
             </>
           ) : (
-            <span>'Select mutant'</span>
+            <span>mutant</span>
           )}
         </div>
       </div>

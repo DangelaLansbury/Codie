@@ -44,17 +44,17 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
   negCharge: {
     name: 'Negative Charge',
     description: 'Forms salt bridges with positive residues',
-    foldEffect: 'stabilize structure',
+    foldEffect: 'stablize structure',
   },
   posCharge: {
     name: 'Positive Charge',
     description: 'Forms salt bridges with negative residues',
-    foldEffect: 'stabilize structure',
+    foldEffect: 'stablize structure',
   },
   kink: {
     name: 'Kink-Forming',
     description: 'Creates a sharp bend or disrupts helices',
-    foldEffect: 'bend rigidly',
+    foldEffect: 'rigid bend',
   },
   flexible: {
     name: 'Flexible',
@@ -79,7 +79,7 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
 };
 
 export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
-  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(' + ');
+  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(', ');
   return traits;
 }
 
