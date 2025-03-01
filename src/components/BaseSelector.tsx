@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
 
-const BaseSelectorInput = styled.div`
+interface BaseSelectorInputProps {
+  color: string;
+}
+
+const BaseSelectorInput = styled.div<BaseSelectorInputProps>`
   align-items: center;
   background-color: #cfbab3;
   cursor: pointer;
@@ -19,7 +23,7 @@ const BaseSelectorInput = styled.div`
     color: white;
   }
   &.active {
-    background-color: #ca6145;
+    background-color: ${(props) => props.color};
     color: white;
   }
 `;
@@ -40,7 +44,7 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value }) =
   return (
     <div>
       {Object.values(b_).map((b: Base) => (
-        <BaseSelectorInput key={b.letter} onClick={() => handleClick(b.letter)} className={selected === b.letter ? 'active' : ''}>
+        <BaseSelectorInput key={b.letter} onClick={() => handleClick(b.letter)} className={selected === b.letter ? 'active' : ''} color={b.color}>
           {b.letter}
         </BaseSelectorInput>
       ))}
