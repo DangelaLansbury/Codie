@@ -8,7 +8,7 @@ interface BaseSelectorInputProps {
   isMutant?: boolean;
 }
 
-const BaseSelectorInput = styled.div<BaseSelectorInputProps>`
+const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isMutant }) => ({ color, isMutant }))<BaseSelectorInputProps>`
   align-items: center;
   background-color: #f6f6f6;
   color: #6a6a6a;
@@ -22,7 +22,7 @@ const BaseSelectorInput = styled.div<BaseSelectorInputProps>`
   width: 2rem;
   ${(props) =>
     props.isMutant &&
-    `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.025) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.025) 50%, rgba(0, 0, 0, 0.025) 75%, transparent 75%, transparent);
+    `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
        background-size: 5px 5px;`}
   &:hover {
     background-color: #ebebeb;
@@ -31,9 +31,10 @@ const BaseSelectorInput = styled.div<BaseSelectorInputProps>`
   &.active {
     background-color: ${(props) => props.color};
     color: white;
+    font-weight: 700;
     ${(props) =>
       props.isMutant &&
-      `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+      `background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
        background-size: 5px 5px;`}
   }
 `;
@@ -93,7 +94,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
   }, [b1, b2, b3]);
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
       <div style={{ marginBottom: '1rem' }}>{isMutant ? 'Mutant' : 'Wildtype'}</div>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
         <BaseSelector onChange={setB1} value={b1} isMutant={isMutant} />
