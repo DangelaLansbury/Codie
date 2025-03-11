@@ -95,7 +95,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-      <div style={{ marginBottom: '1rem' }}>{isMutant ? 'Mutant' : 'Wildtype'}</div>
+      {/* <div style={{ marginBottom: '1rem' }}>{isMutant ? 'Mutant' : 'Wildtype'}</div> */}
       <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
         <BaseSelector onChange={setB1} value={b1} isMutant={isMutant} />
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />
