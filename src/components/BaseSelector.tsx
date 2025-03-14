@@ -43,7 +43,7 @@ const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isM
 `;
 
 interface BaseSelectorProps {
-  onChange: (value: BaseLetter) => void;
+  onChange: (value: BaseLetter | null) => void;
   value: BaseLetter | null;
   isMutant?: boolean;
 }
@@ -54,6 +54,11 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value, isM
   const [hovering, setHovering] = useState(false);
 
   const handleClick = (value: BaseLetter) => {
+    if (value === selected) {
+      setSelected(null);
+      onChange(null);
+      return;
+    }
     setSelected(value);
     onChange(value);
   };
@@ -105,22 +110,45 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
+  const [name, setName] = useState<string>('None');
   // const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
   // const [codon, setCodon] = useState<string>('No amino acid');
 
   useEffect(() => {
+    if (!b1 || !b2 || !b3) {
+      setCodon(null);
+      setName('None');
+      return;
+    }
+
+    // Calculate the amino acid from the selected bases
     const aminoAcid = aaFromCodon(b1, b2, b3);
     if (aminoAcid == null) {
-      return;
+      setCodon(null);
+      setName('None');
     } else {
-      // if (peptideChain.length < 4) {
-      //   setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
-      // } else {
-      //   setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
-      // }
       setCodon(aminoAcid);
+      setName(aminoAcid.name);
     }
   }, [b1, b2, b3]);
+  //   const aminoAcid = aaFromCodon(b1, b2, b3);
+  //   if (aminoAcid == null) {
+  //     return;
+  //   } else {
+  //     // if (peptideChain.length < 4) {
+  //     //   setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
+  //     // } else {
+  //     //   setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
+  //     // }
+  //     if (!b1 || !b2 || !b3) {
+  //       setCodon(null);
+  //       setName('None');
+  //       return;
+  //     }
+  //     setName(aminoAcid.name);
+  //     setCodon(aminoAcid);
+  //   }
+  // }, [b1, b2, b3]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
@@ -129,7 +157,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
       </div>
-      <div style={{ margin: '1rem 0 0.25rem 0' }}>{codon ? <div>{codon.name}</div> : <div>None</div>}</div>
+      <div style={{ margin: '1rem 0 0.25rem 0' }}>{name}</div>
       {/* <div>
         <p>Peptide Chain:</p>
         <ul>
