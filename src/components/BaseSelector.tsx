@@ -131,24 +131,6 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant
       setName(aminoAcid.name);
     }
   }, [b1, b2, b3]);
-  //   const aminoAcid = aaFromCodon(b1, b2, b3);
-  //   if (aminoAcid == null) {
-  //     return;
-  //   } else {
-  //     // if (peptideChain.length < 4) {
-  //     //   setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
-  //     // } else {
-  //     //   setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
-  //     // }
-  //     if (!b1 || !b2 || !b3) {
-  //       setCodon(null);
-  //       setName('None');
-  //       return;
-  //     }
-  //     setName(aminoAcid.name);
-  //     setCodon(aminoAcid);
-  //   }
-  // }, [b1, b2, b3]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
