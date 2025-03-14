@@ -106,7 +106,7 @@ interface CodonSelectorProps {
   isMutant?: boolean;
 }
 
-export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, isMutant }) => {
+export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant }) => {
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
