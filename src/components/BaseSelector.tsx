@@ -6,9 +6,10 @@ import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
 interface BaseSelectorInputProps {
   color: string;
   isMutant?: boolean;
+  isDimmed?: boolean;
 }
 
-const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isMutant }) => ({ color, isMutant }))<BaseSelectorInputProps>`
+const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isMutant, isDimmed }) => ({ color, isMutant, isDimmed }))<BaseSelectorInputProps>`
   align-items: center;
   background-color: #f6f6f6;
   color: #6a6a6a;
@@ -18,7 +19,8 @@ const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isM
   font-weight: 500;
   height: 2rem;
   justify-content: center;
-  transition: background-color ease-in-out 0.2s;
+  opacity: ${(props) => (props.isDimmed ? 0.25 : 1)};
+  transition: background-color ease-in-out 0.2s, opacity ease-in-out 0.2s;
   width: 2rem;
   ${(props) =>
     props.isMutant &&
@@ -27,6 +29,7 @@ const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isM
   &:hover {
     background-color: #ebebeb;
     color: #565656;
+    opacity: 1;
   }
   &.active {
     background-color: ${(props) => props.color};
@@ -47,16 +50,43 @@ interface BaseSelectorProps {
 
 export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value, isMutant }) => {
   const [selected, setSelected] = useState<BaseLetter | null>(null);
+  const [hovered, setHovered] = useState<BaseLetter | null>(null);
+  const [hovering, setHovering] = useState(false);
 
   const handleClick = (value: BaseLetter) => {
     setSelected(value);
     onChange(value);
   };
 
+  const handleMouseEnter = (value: BaseLetter) => {
+    setHovered(value);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(null);
+  };
+
+  const handleBaseSelectorMouseEnter = () => {
+    setHovering(true);
+  };
+
+  const handleBaseSelectorMouseLeave = () => {
+    setHovering(false);
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }} onMouseEnter={handleBaseSelectorMouseEnter} onMouseLeave={handleBaseSelectorMouseLeave}>
       {Object.values(b_).map((b: Base) => (
-        <BaseSelectorInput key={b.letter} onClick={() => handleClick(b.letter)} className={selected === b.letter ? 'active' : ''} color={b.color} isMutant={isMutant}>
+        <BaseSelectorInput
+          key={b.letter}
+          onClick={() => handleClick(b.letter)}
+          onMouseEnter={() => handleMouseEnter(b.letter)}
+          onMouseLeave={handleMouseLeave}
+          className={selected === b.letter ? 'active' : ''}
+          color={b.color}
+          isMutant={isMutant}
+          isDimmed={!hovering && selected !== null && selected !== b.letter && hovered !== b.letter}
+        >
           {b.letter}
         </BaseSelectorInput>
       ))}
@@ -86,7 +116,6 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
       // if (peptideChain.length < 4) {
       //   setPeptideChain((prevChain) => [...prevChain, aminoAcid]);
       // } else {
-      //   // remove the first element and add the new one
       //   setPeptideChain((prevChain) => [...prevChain.slice(1), aminoAcid]);
       // }
       setCodon(aminoAcid);
@@ -95,7 +124,6 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-      {/* <div style={{ marginBottom: '1rem' }}>{isMutant ? 'Mutant' : 'Wildtype'}</div> */}
       <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
         <BaseSelector onChange={setB1} value={b1} isMutant={isMutant} />
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />

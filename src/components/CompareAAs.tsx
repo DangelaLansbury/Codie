@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   gap: 1rem;
   height: 100vh;
   justify-content: center;
-  max-width: 24rem;
+  max-width: 22rem;
   padding: 1rem 0;
   width: 100%;
 `;
@@ -20,6 +20,16 @@ const SelectorsContainer = styled.div`
   flex-direction: row;
   gap: 1rem;
   width: 100%;
+  position: relative;
+  &::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: #e0e0e0;
+    position: absolute;
+    left: 50%;
+  }
 `;
 
 const DetailsContainer = styled.div`
@@ -29,45 +39,21 @@ const DetailsContainer = styled.div`
   flex-direction: row;
   gap: 1rem;
   justify-content: center;
-  padding: 1rem 0;
   width: 100%;
 `;
 
-// const MainContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   height: 100vh;
-//   padding: 1rem 0;
-//   width: 24rem;
-// `;
-
-// const ContentWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   gap: 1rem;
-//   width: 100%;
-// `;
-
-// const SelectorsContainer = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   gap: 1rem;
-//   width: 100%;
-// `;
-
-// const DetailsContainer = styled.div`
-//   align-items: flex-start;
-//   border-top: 1px solid #e0e0e0;
-//   display: flex;
-//   flex-direction: row;
-//   gap: 1rem;
-//   justify-content: center;
-//   padding: 1rem 0;
-//   width: 100%;
-// `;
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  &.top {
+    justify-content: flex-end;
+  }
+  &.bottom {
+    justify-content: flex-start;
+  }
+`;
 
 const FoldEffectContainer = styled.div`
   align-items: center;
@@ -75,23 +61,23 @@ const FoldEffectContainer = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   justify-content: flex-start;
-  padding: 1rem 0.25rem;
+  padding: 1.5rem 0;
   width: 100%;
 `;
 
-const VDivider = styled.div`
-  border-left: 1px solid #e0e0e0;
-  height: 100%;
-`;
+// const VDivider = styled.div`
+//   border-left: 1px solid #e0e0e0;
+//   height: 100%;
+// `;
 
-const VDividerContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  /* margin: 0 1rem; */
-  height: 100%;
-`;
+// const VDividerContainer = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: center;
+//   /* margin: 0 1rem; */
+//   height: 100%;
+// `;
 
 export const CompareAAs: React.FC = () => {
   const [wildtype, setWildtype] = useState<AminoAcidData | null>(null);
@@ -99,16 +85,13 @@ export const CompareAAs: React.FC = () => {
 
   return (
     <MainContainer>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', height: '100%', width: '100%' }}>
+      <ContentWrapper className="top">
         <SelectorsContainer>
           <CodonSelector codon={wildtype} setCodon={setWildtype} />
-          <VDividerContainer>
-            <VDivider />
-          </VDividerContainer>
           <CodonSelector codon={mutant} setCodon={setMutant} isMutant={true} />
         </SelectorsContainer>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', height: '100%', width: '100%' }}>
+      </ContentWrapper>
+      <ContentWrapper className="bottom">
         <DetailsContainer>
           <FoldEffectContainer>
             {wildtype ? (
@@ -119,9 +102,6 @@ export const CompareAAs: React.FC = () => {
               <span>wildtype</span>
             )}
           </FoldEffectContainer>
-          <VDividerContainer>
-            <VDivider />
-          </VDividerContainer>
           <FoldEffectContainer>
             {mutant ? (
               <>
@@ -132,7 +112,7 @@ export const CompareAAs: React.FC = () => {
             )}
           </FoldEffectContainer>
         </DetailsContainer>
-      </div>
+      </ContentWrapper>
     </MainContainer>
   );
 };
