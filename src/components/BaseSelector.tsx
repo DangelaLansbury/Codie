@@ -15,7 +15,7 @@ const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isM
   color: #6a6a6a;
   cursor: pointer;
   display: flex;
-  font-family: 'Fira Mono', monospace;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 500;
   height: 2rem;
   justify-content: center;
@@ -139,7 +139,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
       </div>
-      <div style={{ margin: '1rem 0 0.25rem 0' }}>{name}</div>
+      <div style={{ margin: '1rem 0 0.25rem 0', fontFamily: '"Merriweather", serif', fontWeight: '700', fontSize: '1.25rem' }}>{name}</div>
       {/* <div>
         <p>Peptide Chain:</p>
         <ul>
