@@ -11,8 +11,8 @@ interface BaseSelectorInputProps {
 
 const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isMutant, isDimmed }) => ({ color, isMutant, isDimmed }))<BaseSelectorInputProps>`
   align-items: center;
-  background-color: #f6f6f6;
-  color: #6a6a6a;
+  background-color: var(--gray-100);
+  color: var(--ink-600);
   cursor: pointer;
   display: flex;
   font-family: 'Ubuntu', sans-serif;
@@ -27,8 +27,8 @@ const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isM
     `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
        background-size: 5px 5px;`}
   &:hover {
-    background-color: #ebebeb;
-    color: #565656;
+    background-color: var(--gray-200);
+    color: var(--ink-800);
     opacity: 1;
   }
   &.active {
@@ -100,6 +100,18 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value, isM
   );
 };
 
+const CodonName = styled.div`
+  font-family: 'Merriweather', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1rem 0 0 0;
+  height: 2rem;
+  line-height: 2rem;
+  &.null {
+    color: var(--ink-100);
+  }
+`;
+
 interface CodonSelectorProps {
   codon: AminoAcidData | null;
   setCodon: (codon: AminoAcidData | null) => void;
@@ -110,14 +122,14 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
-  const [name, setName] = useState<string>('None');
+  const [name, setName] = useState<string>('—');
   // const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
   // const [codon, setCodon] = useState<string>('No amino acid');
 
   useEffect(() => {
     if (!b1 || !b2 || !b3) {
       setCodon(null);
-      setName('None');
+      setName('—');
       return;
     }
 
@@ -139,7 +151,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
       </div>
-      <div style={{ margin: '1rem 0 0.25rem 0', fontFamily: '"Merriweather", serif', fontWeight: '700', fontSize: '1.25rem' }}>{name}</div>
+      <CodonName className={name === '—' ? 'null' : ''}>{name}</CodonName>
       {/* <div>
         <p>Peptide Chain:</p>
         <ul>

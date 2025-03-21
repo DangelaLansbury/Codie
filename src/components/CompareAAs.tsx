@@ -26,7 +26,7 @@ const SelectorsContainer = styled.div`
     display: block;
     width: 1px;
     height: 100%;
-    background-color: #e0e0e0;
+    background-color: var(--gray-300);
     position: absolute;
     left: 50%;
   }
@@ -34,7 +34,7 @@ const SelectorsContainer = styled.div`
 
 const DetailsContainer = styled.div`
   align-items: top;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--gray-300);
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -64,20 +64,6 @@ const FoldEffectContainer = styled.div`
   padding: 1.5rem 0;
   width: 100%;
 `;
-
-// const VDivider = styled.div`
-//   border-left: 1px solid #e0e0e0;
-//   height: 100%;
-// `;
-
-// const VDividerContainer = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: center;
-//   /* margin: 0 1rem; */
-//   height: 100%;
-// `;
 
 export const CompareAAs: React.FC = () => {
   const [wildtype, setWildtype] = useState<AminoAcidData | null>(null);
