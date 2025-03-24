@@ -77,24 +77,30 @@ export const CompareAAs: React.FC = () => {
       </ContentWrapper>
       <ContentWrapper className="bottom">
         <DetailsContainer>
-          <FoldEffectContainer>
-            {wildtype ? (
-              <>
-                <span>{getFoldEffect(wildtype.details)}</span>
-              </>
-            ) : (
-              <span>wildtype</span>
-            )}
-          </FoldEffectContainer>
-          <FoldEffectContainer>
-            {mutant ? (
-              <>
-                <span>{getFoldEffect(mutant.details)}</span>
-              </>
-            ) : (
-              <span>mutant</span>
-            )}
-          </FoldEffectContainer>
+          {wildtype && mutant && wildtype.name === mutant.name ? (
+            <FoldEffectContainer>{getFoldEffect(wildtype.details)}</FoldEffectContainer>
+          ) : (
+            <>
+              <FoldEffectContainer>
+                {wildtype ? (
+                  <>
+                    <span>{getFoldEffect(wildtype.details)}</span>
+                  </>
+                ) : (
+                  <span>wildtype</span>
+                )}
+              </FoldEffectContainer>
+              <FoldEffectContainer>
+                {mutant ? (
+                  <>
+                    <span>{getFoldEffect(mutant.details)}</span>
+                  </>
+                ) : (
+                  <span>mutant</span>
+                )}
+              </FoldEffectContainer>
+            </>
+          )}
         </DetailsContainer>
       </ContentWrapper>
     </MainContainer>

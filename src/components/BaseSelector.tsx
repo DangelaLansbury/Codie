@@ -105,6 +105,7 @@ const CodonSelectorColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem 0 0.25rem 0;
   width: 100%;
 `;
 
