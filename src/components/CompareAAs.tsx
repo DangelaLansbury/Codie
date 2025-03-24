@@ -10,9 +10,8 @@ const MainContainer = styled.div`
   gap: 1rem;
   height: 100vh;
   justify-content: center;
-  max-width: 22rem;
   padding: 1rem 0;
-  width: 100%;
+  width: clamp(20rem, 90vw, 24rem);
 `;
 
 const SelectorsContainer = styled.div`
@@ -34,7 +33,6 @@ const SelectorsContainer = styled.div`
 
 const DetailsContainer = styled.div`
   align-items: top;
-  border-top: 1px solid var(--gray-300);
   display: flex;
   flex-direction: row;
   gap: 1rem;

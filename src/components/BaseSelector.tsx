@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getFoldEffect } from './AAData';
 
 interface BaseSelectorInputProps {
   color: string;
@@ -9,7 +9,7 @@ interface BaseSelectorInputProps {
   isDimmed?: boolean;
 }
 
-const BaseSelectorInput = styled.div.attrs<BaseSelectorInputProps>(({ color, isMutant, isDimmed }) => ({ color, isMutant, isDimmed }))<BaseSelectorInputProps>`
+const BaseSelectorInput = styled(({ isMutant, isDimmed, ...rest }) => <div {...rest} />)<BaseSelectorInputProps>`
   align-items: center;
   background-color: var(--gray-100);
   color: var(--ink-600);
@@ -100,13 +100,41 @@ export const BaseSelector: React.FC<BaseSelectorProps> = ({ onChange, value, isM
   );
 };
 
+const CodonSelectorColumn = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+`;
+
+const BaseSelectorGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: center;
+`;
+
 const CodonName = styled.div`
+  display: flex;
   font-family: 'Merriweather', serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
   font-weight: 700;
-  margin: 1rem 0 0 0;
-  height: 2rem;
-  line-height: 2rem;
+  line-height: 1.25;
+  justify-content: center;
+  margin: 1.5rem 0 0 0;
+  width: 100%;
+  &.null {
+    color: var(--ink-100);
+  }
+`;
+
+const FoldEffect = styled.div`
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  text-align: center;
   &.null {
     color: var(--ink-100);
   }
@@ -118,13 +146,11 @@ interface CodonSelectorProps {
   isMutant?: boolean;
 }
 
-export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant }) => {
+export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, isMutant }) => {
   const [b1, setB1] = useState<BaseLetter | null>(null);
   const [b2, setB2] = useState<BaseLetter | null>(null);
   const [b3, setB3] = useState<BaseLetter | null>(null);
   const [name, setName] = useState<string>('—');
-  // const [peptideChain, setPeptideChain] = useState<AminoAcidData[]>([]);
-  // const [codon, setCodon] = useState<string>('No amino acid');
 
   useEffect(() => {
     if (!b1 || !b2 || !b3) {
@@ -145,21 +171,14 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ setCodon, isMutant
   }, [b1, b2, b3]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '0.25rem', justifyContent: 'center' }}>
+    <CodonSelectorColumn>
+      <BaseSelectorGroup>
         <BaseSelector onChange={setB1} value={b1} isMutant={isMutant} />
         <BaseSelector onChange={setB2} value={b2} isMutant={isMutant} />
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
-      </div>
+      </BaseSelectorGroup>
       <CodonName className={name === '—' ? 'null' : ''}>{name}</CodonName>
-      {/* <div>
-        <p>Peptide Chain:</p>
-        <ul>
-          {peptideChain.map((aa, index) => (
-            <li key={`${aa.abbr}-${index}`}>{aa.abbr}</li>
-          ))}
-        </ul>
-      </div> */}
-    </div>
+      {codon ? <FoldEffect>{getFoldEffect(codon.details)}</FoldEffect> : <FoldEffect className="null">{isMutant ? 'select mutant' : 'select wildtype'}</FoldEffect>}
+    </CodonSelectorColumn>
   );
 };

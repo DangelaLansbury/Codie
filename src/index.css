@@ -57,14 +57,9 @@ body {
   width: 100%;
 }
 
-h1 {
-  font-size: 3.2rem;
-  line-height: 1.1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Reduce h2 size for mobile */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.125rem;
   }
 }
