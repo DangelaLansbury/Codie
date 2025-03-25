@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getFoldEffect } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getTraitName } from './AAData';
 
 interface BaseSelectorInputProps {
   color: string;
@@ -11,7 +11,7 @@ interface BaseSelectorInputProps {
 
 const BaseSelectorInput = styled(({ isMutant, isDimmed, ...rest }) => <div {...rest} />)<BaseSelectorInputProps>`
   align-items: center;
-  background-color: var(--gray-100);
+  background-color: var(--gray-200);
   color: var(--ink-600);
   cursor: pointer;
   display: flex;
@@ -24,10 +24,10 @@ const BaseSelectorInput = styled(({ isMutant, isDimmed, ...rest }) => <div {...r
   width: 2rem;
   ${(props) =>
     props.isMutant &&
-    `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.05) 75%, transparent 75%, transparent);
+    `background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.075) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.075) 50%, rgba(0, 0, 0, 0.075) 75%, transparent 75%, transparent);
        background-size: 5px 5px;`}
   &:hover {
-    background-color: var(--gray-200);
+    background-color: var(--gray-300);
     color: var(--ink-800);
     opacity: 1;
   }
@@ -179,7 +179,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
       </BaseSelectorGroup>
       <CodonName className={name === '—' ? 'null' : ''}>{name}</CodonName>
-      {codon ? <FoldEffect>{getFoldEffect(codon.details)}</FoldEffect> : <FoldEffect className="null">{isMutant ? 'select mutant' : 'select wildtype'}</FoldEffect>}
+      {codon ? <FoldEffect>{getTraitName(codon.details)}</FoldEffect> : <FoldEffect className="null">{isMutant ? 'select mutant' : 'select wildtype'}</FoldEffect>}
     </CodonSelectorColumn>
   );
 };
