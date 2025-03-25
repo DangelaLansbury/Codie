@@ -99,9 +99,8 @@ Error generating stack: `+e.message+`
     color: var(--ink-100);
   }
 `,T0=Xl.div`
-  font-family: 'Ubuntu', sans-serif;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0.5rem 0;
   text-align: center;
   &.null {
