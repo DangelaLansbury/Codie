@@ -118,12 +118,14 @@ const BaseSelectorGroup = styled.div`
 
 const CodonName = styled.div`
   display: flex;
-  font-family: 'Merriweather', serif;
+  /* font-family: 'Merriweather', serif; */
+  font-family: 'Aileron', sans-serif;
   font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-  font-weight: 700;
+  font-weight: 900;
+  letter-spacing: 0.025em;
   line-height: 1.25;
   justify-content: center;
-  margin: 1.5rem 0 0 0;
+  margin: 1.5rem 0 0.25rem 0;
   width: 100%;
   &.null {
     color: var(--ink-100);
