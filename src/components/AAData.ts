@@ -72,7 +72,7 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
     foldEffect: 'stack',
   },
   stop: {
-    name: 'Stop Codon',
+    name: 'End Translation',
     description: 'Terminates translation and releases polypeptide',
     foldEffect: 'end translation',
   },

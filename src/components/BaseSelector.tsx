@@ -119,10 +119,11 @@ const BaseSelectorGroup = styled.div`
 const CodonName = styled.div`
   display: flex;
   /* font-family: 'Merriweather', serif; */
-  font-family: 'Aileron', sans-serif;
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
-  font-weight: 900;
-  letter-spacing: 0.025em;
+  /* font-family: 'Aileron', sans-serif; */
+  font-family: 'Linux Libertine', serif;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
   line-height: 1.25;
   justify-content: center;
   margin: 1.5rem 0 0.25rem 0;
@@ -134,7 +135,7 @@ const CodonName = styled.div`
 
 const FoldEffect = styled.div`
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.5rem 0;
   text-align: center;
   &.null {
