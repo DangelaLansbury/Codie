@@ -123,7 +123,6 @@ const CodonName = styled.div`
   font-family: 'Linux Libertine', serif;
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   font-weight: 700;
-  letter-spacing: 0.01em;
   line-height: 1.25;
   justify-content: center;
   margin: 1.5rem 0 0.25rem 0;
