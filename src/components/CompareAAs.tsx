@@ -25,7 +25,7 @@ const SelectorsContainer = styled.div`
     display: block;
     width: 1px;
     height: 100%;
-    background-color: var(--gray-300);
+    background-color: var(--ink-100);
     position: absolute;
     left: 50%;
   }

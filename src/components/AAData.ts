@@ -15,10 +15,10 @@ export interface Base {
 }
 
 export const b_: Record<BaseLetter, Base> = {
-  A: { letter: BaseLetter.A, name: 'Adenine', color: 'var(--aubergine)' },
+  A: { letter: BaseLetter.A, name: 'Adenine', color: 'var(--green)' },
   C: { letter: BaseLetter.C, name: 'Cytosine', color: 'var(--purple)' },
-  G: { letter: BaseLetter.G, name: 'Guanine', color: 'var(--forest)' },
-  U: { letter: BaseLetter.U, name: 'Uracil', color: 'var(--yellow)' },
+  G: { letter: BaseLetter.G, name: 'Guanine', color: 'var(--sage)' },
+  U: { letter: BaseLetter.U, name: 'Uracil', color: 'var(--orange)' },
 } as const;
 
 /**
