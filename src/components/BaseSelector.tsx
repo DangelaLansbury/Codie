@@ -117,6 +117,7 @@ const BaseSelectorGroup = styled.div`
 `;
 
 const CodonName = styled.div`
+  color: var(--ink-800);
   display: flex;
   /* font-family: 'Merriweather', serif; */
   /* font-family: 'Aileron', sans-serif; */
