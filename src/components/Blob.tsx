@@ -5,7 +5,7 @@ interface OrganicCircleProps {
   color?: string;
 }
 
-const Blob: React.FC<OrganicCircleProps> = ({ size = 100, color = '#595451' }) => {
+const Blob: React.FC<OrganicCircleProps> = ({ size = 100, color = '#3a3735' }) => {
   return (
     <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>

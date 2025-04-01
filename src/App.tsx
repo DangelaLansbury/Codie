@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div style={{ position: 'absolute', top: 16, left: 16 }}>
-        <Blob size={100} color="#555" />
+        <Blob size={100} color="var(--gray-300)" />
       </div>
       <CompareAAs />
     </>
