@@ -1,0 +1,82 @@
+.baseSelectorInput {
+  align-items: center;
+  background-color: var(--gray-200);
+  color: var(--ink-600);
+  cursor: pointer;
+  display: flex;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  height: 2rem;
+  justify-content: center;
+  transition: background-color ease-in-out 0.2s, opacity ease-in-out 0.2s;
+  width: 2rem;
+  opacity: 1;
+
+  &.dimmed {
+    opacity: 0.25;
+  }
+
+  &.mutant {
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.075) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.075) 50%, rgba(0, 0, 0, 0.075) 75%, transparent 75%, transparent);
+    background-size: 5px 5px;
+  }
+
+  &:hover {
+    background-color: var(--gray-300);
+    color: var(--ink-800);
+    opacity: 1;
+  }
+
+  &.active {
+    color: white;
+    font-weight: 700;
+
+    &.mutant {
+      background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+      background-size: 5px 5px;
+    }
+  }
+}
+
+.codonSelectorColumn {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0 0.25rem 0;
+  width: 100%;
+}
+
+.baseSelectorGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.codonName {
+  color: var(--ink-800);
+  display: flex;
+  font-family: 'Linux Libertine', serif;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  justify-content: center;
+  margin: 1.5rem 0 0.25rem 0;
+  width: 100%;
+
+  &.null {
+    color: var(--ink-100);
+  }
+}
+
+.foldEffect {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  text-align: center;
+
+  &.null {
+    color: var(--ink-100);
+  }
+}
