@@ -232,10 +232,10 @@ export const AA: AminoAcidData[] = [
   { name: 'Valine', abbr: 'Val', letter: 'V', b1: b_.G, b2: b_.U, b3: [b_.U, b_.C, b_.A, b_.G], details: AA_INFO['V'] },
 
   { name: 'Tyrosine', abbr: 'Tyr', letter: 'Y', b1: b_.U, b2: b_.A, b3: [b_.U, b_.C], details: AA_INFO['Y'] },
-  { name: 'STOP', abbr: 'STP', letter: '*', b1: b_.U, b2: b_.A, b3: [b_.A, b_.G], details: AA_INFO['*'] },
+  { name: 'Stop codon', abbr: 'STOP', letter: '*', b1: b_.U, b2: b_.A, b3: [b_.A, b_.G], details: AA_INFO['*'] },
   { name: 'Serine', abbr: 'Ser', letter: 'S', b1: b_.U, b2: b_.C, b3: [b_.U, b_.C, b_.A, b_.G], details: AA_INFO['S'] },
   { name: 'Cysteine', abbr: 'Cys', letter: 'C', b1: b_.U, b2: b_.G, b3: [b_.U, b_.C], details: AA_INFO['C'] },
-  { name: 'STOP', abbr: 'STP', letter: '*', b1: b_.U, b2: b_.G, b3: [b_.A], details: AA_INFO['*'] },
+  { name: 'Stop codon', abbr: 'STOP', letter: '*', b1: b_.U, b2: b_.G, b3: [b_.A], details: AA_INFO['*'] },
   { name: 'Tryptophan', abbr: 'Trp', letter: 'W', b1: b_.U, b2: b_.G, b3: [b_.G], details: AA_INFO['W'] },
   { name: 'Phenylalanine', abbr: 'Phe', letter: 'F', b1: b_.U, b2: b_.U, b3: [b_.C, b_.U], details: AA_INFO['F'] },
   { name: 'Leucine', abbr: 'Leu', letter: 'L', b1: b_.U, b2: b_.U, b3: [b_.A, b_.G], details: AA_INFO['L'] },

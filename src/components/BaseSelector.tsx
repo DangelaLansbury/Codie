@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../css/BaseSelector.module.css';
 
-import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData, getTraitName } from './AAData';
+import { b_, aaFromCodon, Base, BaseLetter, AminoAcidData } from './AAData';
 
 interface BaseSelectorProps {
   onChange: (value: BaseLetter | null) => void;
@@ -87,7 +87,7 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
       setName('None');
     } else {
       setCodon(aminoAcid);
-      setName(aminoAcid.name);
+      setName(aminoAcid.abbr);
     }
   }, [b1, b2, b3]);
 
@@ -99,7 +99,13 @@ export const CodonSelector: React.FC<CodonSelectorProps> = ({ codon, setCodon, i
         <BaseSelector onChange={setB3} value={b3} isMutant={isMutant} />
       </div>
       <div className={`${styles.codonName} ${name === '—' ? styles.null : ''}`}>{name}</div>
-      {codon ? <div className={styles.foldEffect}>{getTraitName(codon.details)}</div> : <div className={`${styles.foldEffect} ${styles.null}`}>{isMutant ? 'select mutant' : 'select wildtype'}</div>}
+      {codon ? (
+        <div className={styles.fullName}>
+          {codon.name} ({codon.letter})
+        </div>
+      ) : (
+        <div className={`${styles.fullName} ${styles.null}`}>{isMutant ? 'select mutant' : 'select wildtype'}</div>
+      )}
     </div>
   );
 };

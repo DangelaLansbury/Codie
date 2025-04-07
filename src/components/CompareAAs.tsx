@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/CompareAAs.module.css';
-import { AminoAcidData, getFoldEffect } from './AAData';
+import { AminoAcidData, getTraitName } from './AAData';
 import { CodonSelector } from './BaseSelector';
 
 export const CompareAAs: React.FC = () => {
@@ -18,25 +18,25 @@ export const CompareAAs: React.FC = () => {
       <div className={`${styles.contentWrapper} ${styles.bottom}`}>
         <div className={styles.detailsContainer}>
           {wildtype && mutant && wildtype.name === mutant.name ? (
-            <div className={styles.foldEffectContainer}>{getFoldEffect(wildtype.details)}</div>
+            <div className={styles.foldEffectContainer}>{getTraitName(wildtype.details)}</div>
           ) : (
             <>
               <div className={styles.foldEffectContainer}>
                 {wildtype ? (
                   <>
-                    <span>{getFoldEffect(wildtype.details)}</span>
+                    <span>{getTraitName(wildtype.details)}</span>
                   </>
                 ) : (
-                  <span>wildtype</span>
+                  <span></span>
                 )}
               </div>
               <div className={styles.foldEffectContainer}>
                 {mutant ? (
                   <>
-                    <span>{getFoldEffect(mutant.details)}</span>
+                    <span>{getTraitName(mutant.details)}</span>
                   </>
                 ) : (
-                  <span>mutant</span>
+                  <span></span>
                 )}
               </div>
             </>

@@ -58,7 +58,7 @@
   color: var(--ink-800);
   display: flex;
   font-family: 'Linux Libertine', serif;
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(2rem, 2.5vw, 3rem);
   font-weight: 700;
   line-height: 1.25;
   justify-content: center;
@@ -70,7 +70,7 @@
   }
 }
 
-.foldEffect {
+.fullName {
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.5rem 0;
