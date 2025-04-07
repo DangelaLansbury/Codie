@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface OrganicCircleProps {
-  size?: number;
   color?: string;
 }
 
-const Blob: React.FC<OrganicCircleProps> = ({ size = 100, color = '#3a3735' }) => {
+const Blob: React.FC<OrganicCircleProps> = ({ color = 'var(--gray-300)' }) => {
+  const [blobSize, setBlobSize] = useState(100);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setBlobSize(window.innerWidth < 768 ? 60 : 100);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <svg viewBox="0 0 100 100" width={size} height={size} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <mask id="donut-mask">
-          <path fill="white">
-            <animate
-              attributeName="d"
-              dur="10s"
-              repeatCount="indefinite"
-              values={`
+    <div style={{ position: 'absolute', top: 16, left: 16 }}>
+      <svg viewBox="0 0 100 100" width={blobSize} height={blobSize} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <mask id="donut-mask">
+            <path fill="white">
+              <animate
+                attributeName="d"
+                dur="10s"
+                repeatCount="indefinite"
+                values={`
                 M50 15
                   C65 15, 80 30, 80 50
                   C80 70, 65 85, 50 85
@@ -40,15 +53,16 @@ const Blob: React.FC<OrganicCircleProps> = ({ size = 100, color = '#3a3735' }) =
                   C35 85, 20 70, 20 50
                   C20 30, 35 15, 50 15Z
               `}
-            />
-          </path>
+              />
+            </path>
 
-          <circle cx="50" cy="50" r="16" fill="black" />
-        </mask>
-      </defs>
+            <circle cx="50" cy="50" r="16" fill="black" />
+          </mask>
+        </defs>
 
-      <rect width="100" height="100" fill={color} mask="url(#donut-mask)" />
-    </svg>
+        <rect width="100" height="100" fill={color} mask="url(#donut-mask)" />
+      </svg>
+    </div>
   );
 };
 
