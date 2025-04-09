@@ -58,8 +58,8 @@
   color: var(--ink-800);
   display: flex;
   font-family: 'Gelica', serif;
-  font-size: clamp(2.5rem, 2.5vw, 3.5rem);
-  line-height: 1.25;
+  font-size: clamp(2.25rem, 2.75vw, 2.75rem);
+  line-height: 1.5;
   justify-content: center;
   margin: 1rem 0 0 0;
   width: 100%;
