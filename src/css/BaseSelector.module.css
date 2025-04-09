@@ -57,12 +57,11 @@
 .codonName {
   color: var(--ink-800);
   display: flex;
-  font-family: 'Linux Libertine', serif;
-  font-size: clamp(2rem, 2.5vw, 3rem);
-  font-weight: 700;
+  font-family: 'Gelica', serif;
+  font-size: clamp(2.5rem, 2.5vw, 3.5rem);
   line-height: 1.25;
   justify-content: center;
-  margin: 1rem 0 0.25rem 0;
+  margin: 1rem 0 0 0;
   width: 100%;
 
   &.null {
