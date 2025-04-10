@@ -21,3 +21,31 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'CamingoCode';
+  src: url('assets/fonts/CamingoCode-Regular.woff2') format('woff2'), url('assets/fonts/CamingoCode-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CamingoCode';
+  src: url('assets/fonts/CamingoCode-Bold.woff2') format('woff2'), url('assets/fonts/CamingoCode-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CamingoCode';
+  src: url('assets/fonts/CamingoCode-Italic.woff2') format('woff2'), url('assets/fonts/CamingoCode-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CamingoCode';
+  src: url('assets/fonts/CamingoCode-BoldItalic.woff2') format('woff2'), url('assets/fonts/CamingoCode-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
