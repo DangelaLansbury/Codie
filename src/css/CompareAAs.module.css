@@ -32,6 +32,8 @@
   display: flex;
   flex-direction: row;
   font-family: 'CamingoCode', monospace;
+  font-size: 0.875rem;
+  font-weight: bold;
   gap: 1rem;
   justify-content: center;
   width: 100%;
