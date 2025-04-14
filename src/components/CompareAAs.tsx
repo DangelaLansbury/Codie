@@ -18,12 +18,22 @@ export const CompareAAs: React.FC = () => {
       <div className={`${styles.contentWrapper} ${styles.bottom}`}>
         <div className={styles.detailsContainer}>
           {wildtype && mutant && wildtype.name === mutant.name ? (
-            <div className={styles.foldEffectContainer}>{getTraitName(wildtype.details)}</div>
+            <>
+              <div className={styles.foldEffectContainer}>
+                <div className={styles.foldEffectImgContainer}>
+                  <img src="src/components/graphics/testCube.png" alt="Fold Effect Placeholder" className={styles.foldEffectImg} />
+                </div>
+                <span>{getTraitName(wildtype.details)}</span>
+              </div>
+            </>
           ) : (
             <>
               <div className={styles.foldEffectContainer}>
                 {wildtype ? (
                   <>
+                    <div className={styles.foldEffectImgContainer}>
+                      <img src="src/components/graphics/testCube.png" alt="Fold Effect Placeholder" className={styles.foldEffectImg} />
+                    </div>
                     <span>{getTraitName(wildtype.details)}</span>
                   </>
                 ) : (
@@ -33,6 +43,9 @@ export const CompareAAs: React.FC = () => {
               <div className={styles.foldEffectContainer}>
                 {mutant ? (
                   <>
+                    <div className={styles.foldEffectImgContainer}>
+                      <img src="src/components/graphics/testCube.png" alt="Fold Effect Placeholder" className={styles.foldEffectImg} />
+                    </div>
                     <span>{getTraitName(mutant.details)}</span>
                   </>
                 ) : (
