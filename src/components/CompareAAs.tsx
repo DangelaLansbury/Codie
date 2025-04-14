@@ -24,16 +24,8 @@ export const CompareAAs: React.FC = () => {
             </>
           ) : (
             <>
-              {wildtype && (
-                <>
-                  <FoldEffect aminoAcid={wildtype} />
-                </>
-              )}
-              {mutant && (
-                <>
-                  <FoldEffect aminoAcid={mutant} />
-                </>
-              )}
+              <FoldEffect aminoAcid={wildtype} />
+              <FoldEffect aminoAcid={mutant} />
             </>
           )}
         </div>
