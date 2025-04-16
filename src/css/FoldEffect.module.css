@@ -1,20 +1,8 @@
-.detailsContainer {
-  align-items: top;
-  display: flex;
-  flex-direction: row;
-  font-family: 'CamingoCode', monospace;
-  font-size: 0.875rem;
-  font-weight: bold;
-  gap: 1rem;
-  justify-content: center;
-  width: 100%;
-}
-
 .foldEffectContainer {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   justify-content: flex-start;
   padding: 1.5rem 0;
   width: 100%;
