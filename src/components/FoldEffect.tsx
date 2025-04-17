@@ -11,9 +11,7 @@ const FoldEffect: React.FC<FoldEffectProps> = ({ aminoAcid }) => {
     <div className={styles.foldEffectContainer}>
       {aminoAcid ? (
         <>
-          <div className={styles.foldEffectImgContainer}>
-            <img src="src/components/graphics/testCube.png" alt="Fold Effect Placeholder" className={styles.foldEffectImg} />
-          </div>
+          <div className={styles.foldEffectImgContainer}></div>
           <span>{getTraitName(aminoAcid.details)}</span>
         </>
       ) : (
