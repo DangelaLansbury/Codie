@@ -83,6 +83,11 @@ export function getTraitName(aminoAcidDetails: AminoAcidDetails): string {
   return traits;
 }
 
+export function getTraitDescription(aminoAcidDetails: AminoAcidDetails): string {
+  const traits = aminoAcidDetails.traits.map((trait) => trait.description).join(', ');
+  return traits;
+}
+
 export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
   const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(', ');
   return traits;

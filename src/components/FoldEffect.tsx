@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../css/FoldEffect.module.css';
-import { AminoAcidData, getTraitName } from './AAData';
+import { AminoAcidData, getTraitDescription, getTraitName } from './AAData';
 
 interface FoldEffectProps {
   aminoAcid: AminoAcidData | null;
@@ -12,7 +12,10 @@ const FoldEffect: React.FC<FoldEffectProps> = ({ aminoAcid }) => {
       {aminoAcid ? (
         <>
           <div className={styles.foldEffectImgContainer}></div>
-          <span>{getTraitName(aminoAcid.details)}</span>
+          <div className={styles.foldEffextText}>
+            {getTraitName(aminoAcid.details)}
+            <div className={styles.foldEffectDescription}>{getTraitDescription(aminoAcid.details)}</div>
+          </div>
         </>
       ) : (
         <span></span>

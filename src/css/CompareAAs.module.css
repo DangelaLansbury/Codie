@@ -28,14 +28,14 @@
 }
 
 .detailsContainer {
-  align-items: top;
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
   font-family: 'CamingoCode', monospace;
   font-size: 0.875rem;
   font-weight: bold;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
 }
 
