@@ -28,6 +28,7 @@ export interface AminoAcidTrait {
   name: string;
   description: string;
   foldEffect: string;
+  glyph: string;
 }
 
 export const AA_TRAITS: Record<string, AminoAcidTrait> = {
@@ -35,51 +36,65 @@ export const AA_TRAITS: Record<string, AminoAcidTrait> = {
     name: 'Hydrophobic',
     description: 'Drives formation of a stabilizing hydrophobic core',
     foldEffect: 'fold inward',
+    glyph: '•/•',
   },
   hydrophilic: {
     name: 'Hydrophilic',
     description: 'Promotes hydrogen bonding for flexibility and solubility',
     foldEffect: 'stay on surface',
+    glyph: '•=•',
   },
   negCharge: {
     name: 'Negative Charge',
     description: 'Forms salt bridges with positive residues',
     foldEffect: 'stablize structure',
+    glyph: '-',
   },
   posCharge: {
     name: 'Positive Charge',
     description: 'Forms salt bridges with negative residues',
     foldEffect: 'stablize structure',
+    glyph: '+',
   },
   kink: {
     name: 'Kink-Forming',
     description: 'Creates a sharp bend or disrupts helices',
     foldEffect: 'rigid bend',
+    glyph: '^',
   },
   flexible: {
     name: 'Flexible',
     description: 'Increases backbone flexibility',
     foldEffect: 'allow movement',
+    glyph: '~',
   },
   disulfide: {
     name: 'Disulfide Bonding',
     description: 'Stabilizes structure via strong covalent bonds',
     foldEffect: 'lock in place',
+    glyph: '&',
   },
   aromatic: {
     name: 'Aromatic',
     description: 'Stacks with other aromatic residues for stability',
     foldEffect: 'stack',
+    glyph: '§',
   },
   stop: {
     name: 'End Translation',
     description: 'Terminates translation and releases polypeptide',
     foldEffect: 'end translation',
+    glyph: '*',
   },
 };
 
 export function getTraitName(aminoAcidDetails: AminoAcidDetails): string {
   const traits = aminoAcidDetails.traits.map((trait) => trait.name).join(', ');
+  return traits;
+}
+
+export function getTraitGlyph(aminoAcidDetails: AminoAcidDetails): string {
+  const traits = aminoAcidDetails.traits.map((trait) => trait.glyph).join(' ');
   return traits;
 }
 
