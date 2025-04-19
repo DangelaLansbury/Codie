@@ -40,9 +40,9 @@
 }
 
 .foldEffectDescription {
-  font-family: 'CamingoCode', monospace;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 0.688rem;
   font-weight: normal;
-  color: var(--ink-600);
+  color: var(--ink-500);
   text-align: center;
 }
