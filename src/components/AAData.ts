@@ -88,11 +88,6 @@ export function getTraitDescription(aminoAcidDetails: AminoAcidDetails): string 
   return traits;
 }
 
-export function getFoldEffect(aminoAcidDetails: AminoAcidDetails): string {
-  const traits = aminoAcidDetails.traits.map((trait) => trait.foldEffect).join(', ');
-  return traits;
-}
-
 /**
  * Complete amino acid data
  */
