@@ -18,14 +18,20 @@ export const CompareAAs: React.FC = () => {
       </div>
       <div className={`${styles.contentWrapper} ${styles.bottom}`}>
         <div className={styles.detailsContainer}>
-          {wildtype && mutant && wildtype.name === mutant.name ? (
-            <>
-              <FoldEffect aminoAcid={wildtype} />
-            </>
+          {!wildtype && !mutant ? (
+            <FoldEffect aminoAcid={null} initialState={true} />
           ) : (
             <>
-              <FoldEffect aminoAcid={wildtype} />
-              <FoldEffect aminoAcid={mutant} />
+              {wildtype && mutant && wildtype.name === mutant.name ? (
+                <>
+                  <FoldEffect aminoAcid={wildtype} />
+                </>
+              ) : (
+                <>
+                  <FoldEffect aminoAcid={wildtype} />
+                  <FoldEffect aminoAcid={mutant} />
+                </>
+              )}
             </>
           )}
         </div>

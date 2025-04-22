@@ -20,9 +20,16 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  font-family: 'CamingoCode', monospace;
+  font-size: 0.875rem;
+  font-weight: bold;
   gap: 0.25rem;
   justify-content: center;
   color: var(--ink-800);
+  & > .initialText {
+    font-weight: normal;
+    color: var(--ink-650);
+  }
 }
 
 .foldEffectDescription {
