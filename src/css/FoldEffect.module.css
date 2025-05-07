@@ -25,6 +25,7 @@
   font-weight: bold;
   gap: 0.25rem;
   justify-content: center;
+  text-wrap: pretty;
   color: var(--ink-800);
   & > .initialText {
     font-weight: normal;
